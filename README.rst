@@ -14,6 +14,11 @@ DRYlib for Common Lisp
 
 http://drylib.org
 
+Prerequisites
+=============
+
+* a Common Lisp implementation with ASDF
+
 Features
 ========
 
