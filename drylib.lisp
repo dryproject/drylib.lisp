@@ -1,4 +1,4 @@
-;; This is free and unencumbered software released into the public domain. */
+;; This is free and unencumbered software released into the public domain.
 
 (defpackage :dry
   (:use :cl)
