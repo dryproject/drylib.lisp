@@ -1,0 +1,32 @@
+# https://github.com/roswell/roswell/wiki/Travis-CI
+language: common-lisp
+sudo: false
+addons:
+  apt:
+    packages:
+      - libc6-i386
+      - openjdk-7-jre
+env:
+  global:
+    - PATH=$HOME/.roswell/bin:$PATH
+    - ROSWELL_INSTALL_DIR=$HOME/.roswell
+  matrix:
+    - LISP=sbcl-bin
+    - LISP=ccl-bin
+    - LISP=abcl
+    - LISP=clisp
+    - LISP=ecl
+    - LISP=cmucl
+matrix:
+  fast_finish: true
+  allow_failures:
+    - env: LISP=clisp
+install:
+  - curl -L https://raw.githubusercontent.com/roswell/roswell/release/scripts/install-for-ci.sh | sh
+  - ros install prove
+cache:
+  directories:
+    - $HOME/.roswell
+    - $HOME/.config/common-lisp
+script:
+  - ros run --lisp $LISP --system prove --load test.lisp --quit
